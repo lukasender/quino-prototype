@@ -1,0 +1,35 @@
+{
+  "name": "quino",
+  "version": "0.0.0",
+  "description": "quino - quick notes",
+  "main": "index.js",
+  "scripts": {
+    "watch": "watchify index.js -o static/js/bundle.js -v",
+    "browserify": "browserify index.js | uglifyjs > static/js/bundle.js",
+    "sass": "sass assets/css/main.scss static/css/main.css",
+    "build": "npm run browserify && npm run sass",
+    "start": "npm run watch & nodemon index.js"
+  },
+  "author": "Lukas Ender",
+  "license": "To be decided",
+  "dependencies": {
+    "express": "^4.10.6",
+    "express-handlebars": "^1.1.0",
+    "mobile-detect": "^0.4.3",
+    "node-jsx": "^0.12.4",
+    "normalize.css": "^3.0.2",
+    "react": "^0.12.2"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.1",
+    "browserify": "^7.0.3",
+    "reactify": "^0.17.1",
+    "uglify-js": "^2.4.16",
+    "watchify": "^2.2.1"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}

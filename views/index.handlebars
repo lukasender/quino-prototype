@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>one a day</title>
+    <link rel="stylesheet" href="/css/normalize.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body id="app">
+    <main>
+        <div class="container">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li><a href="/help">Help</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <h3 class="text-muted"><a href="/">Quino</a></h3>
+            </div>
+
+            {{{quinobar}}}
+
+            <div class="row">
+                <div class="col-md-5 col-md-push-3">
+                    {{{quinoDetailsList}}}
+                </div>
+                <div class="col-md-4 col-md-push-3">
+                    {{{quinoFocusedist}}}
+                </div>
+                <div class="col-md-3 col-md-pull-9">
+                    {{{quinoCategoriesList}}}
+                </div>
+            </div>
+            <div class="footer">
+                <p>Made with <span class="glyphicon glyphicon-heart"></span> by the <strong>Quino</strong> team</p>
+            </div>
+        </div>
+    </main>
+    <script src="/js/mobile-detect.min.js"></script>
+    <script type="text/javascript">
+        var md = new MobileDetect(window.navigator.userAgent);
+        if (md.mobile()) {
+            var body = document.getElementById('app');
+            body.className += ' mobile';
+        }
+    </script>
+    <script src="/js/bundle.js"></script>
+</body>
+</html>

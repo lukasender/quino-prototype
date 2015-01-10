@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "watchify index.js -o static/js/bundle.js -v",
-    "browserify": "browserify index.js | uglifyjs > static/js/bundle.js",
+    "browserify": "browserify index.js --debug | uglifyjs --stats --compress warnings -o static/js/bundle.js",
     "sass": "sass assets/css/main.scss static/css/main.css",
     "build": "npm run browserify && npm run sass",
     "start": "npm run watch & nodemon index.js"

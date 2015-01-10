@@ -1,25 +1,39 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = require('react'),
+    logger = require('../utils/logging');
 
 var QuinoBar = React.createClass({
+    getInitialState: function() {
+        return {input: ''};
+    },
+    onChange: function(e) {
+        logger.log('info', e.target.value);
+        this.setState({input: e.target.value});
+    },
+    handleSubmit: function(e) {
+        e.preventDefault();
+        logger.log('info', this.state.input);
+    },
     render: function() {
         var input = this.props.input;
         return (
             <div className="row quinobar">
-                <form method="post" action="submit">
+                <form onSubmit="handleSubmit">
                     <div className="col-md-11">
                         <input id="quinobar-input"
                                className="shadow"
                                type="text"
+                               onChange={this.onChange}
+                               value={this.state.input}
                                placeholder="Add a new Quino or search for existing Quinos" />
                     </div>
                     <div className="col-md-1">
-                        <input id="quinobar-btn"
-                               className="shadow"
-                               type="submit"
-                               name="quinobar-btn"
-                               value="Enter" />
+                        <button id="quinobar-btn"
+                                className="shadow"
+                                name="quinobar-btn">
+                                Enter
+                        </button>
                     </div>
                 </form>
             </div>
@@ -47,7 +61,7 @@ var QuinoDetailsList = React.createClass({
         var details = this.props.details;
         var list = details.map(function(detail) {
             return (
-                <QuinoDetail detail={detail} />
+                <QuinoDetail key={detail.nr} detail={detail} />
             )
         })
         return (
@@ -66,7 +80,8 @@ var QuinoCategoriesList = React.createClass({
                 borderLeft: '4px solid ' + category.color
             }
             return (
-                <li ng-click="selectList(category.name)"
+                <li key={category.id}
+                    ng-click="selectList(category.name)"
                     className="shadow"
                     style={lsStyles}>
                     <span className="badge pull-right">{category.items}</span>
@@ -82,9 +97,9 @@ var QuinoCategoriesList = React.createClass({
     }
 });
 
-var classes = {
+var components = {
     QuinoBar: QuinoBar,
     QuinoDetailsList: QuinoDetailsList,
     QuinoCategoriesList: QuinoCategoriesList
 };
-module.exports = classes;
+module.exports = components;
